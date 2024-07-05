@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maanvik Poddar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        header, .intro, .skills, .github, .spotify, .social-links, .organizations {
+            background-color: #131313;
+            border: 1px solid #2a2a2a;
+            border-radius: 15px;
+            padding: 15px 20px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        header::after, .intro::after, .skills::after, .github::after, .spotify::after, .social-links::after, .organizations::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to top, rgba(30,30,30,0.7), rgba(30,30,30,0));
+            pointer-events: none;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.2em;
+        }
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 20px;
+        }
+        .intro {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        .intro span {
+            display: block;
+        }
+        .intro span:nth-child(1) { color: #ffffff; }
+        .intro span:nth-child(2) { color: #888888; }
+        .intro span:nth-child(3) { color: #666666; }
+        .intro span:nth-child(4) { color: #444444; }
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .skills button {
+            background-color: #2a2a2a;
+            border: none;
+            color: #ffffff;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            height: 50px;
+        }
+        .social-links {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: -20px;
+        }
+        .social-links a {
+            color: #ffffff;
+            text-decoration: none;
+            background-color: #2a2a2a;
+            padding: 10px 15px;
+            border-radius: 10px;
+            text-align: center;
+            display: block;
+        }
+        .github, .spotify {
+            color: #a0a0a0;
+        }
+        .github h3, .spotify h3 {
+            color: #ffffff;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+        }
+        .github h3::before, .spotify h3::before {
+            content: "";
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+        .github p {
+            margin: 10px 0; /* Increased margin for spacing */
+        }
+        .commit-message, .commit-date {
+            font-size: 1em;
+            color: #ccc;
+            margin-top: 10px;
+        }
+        .commit-link {
+            color: #4a8aff;
+            text-decoration: none;
+        }
+        .commit-link:hover {
+            text-decoration: underline;
+        }
+        .organizations {
+            grid-column: 1 / -1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .organizations h2 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            .skills {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .social-links {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .intro {
+                font-size: 1.8em;
+            }
+            .skills {
+                grid-template-columns: 1fr;
+            }
+            .social-links {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">maanvikpoddar.github.io</div>
+            <nav>
+                <a href="#">home.</a>
+                <a href="#">contact.</a>
+            </nav>
+        </header>
+        <div class="main-content">
+            <div class="left-column">
+                <div class="intro">
+                    <span>maanvik poddar,</span>
+                    <span>high schooler,</span>
+                    <span>aspiring CS student,</span>
+                    <span>and a developer</span>
+                </div>
+                <div class="skills">
+                    <button>N</button>
+                    <button>~</button>
+                    <button>Python</button>
+                    <button>JS</button>
+                    <button>Node.js</button>
+                    <button>Git</button>
+                    <button>Serverless</button>
+                    <button>AWS</button>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="github">
+                    <h3>github</h3>
+                    <p>latest commit in <span id="latest-commit"><a href="#" class="commit-link">loading...</a></span></p>
+                    <p class="commit-message" id="commit-message">commit message will appear here</p>
+                    <p class="commit-date" id="commit-date">committed on...</p>
+                </div>
+                <div class="spotify">
+                    <h3>spotify currently playing</h3>
+                    <p style="font-size: 1.2em; color: #fff;">not playing anything</p>
+                    <p>rest assured, i have a good taste in music.</p>
+                    <p>paused</p>
+                </div>
+            </div>
+            <div class="social-links">
+                <a href="#">GitHub</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Instagram</a>
+                <a href="#">Twitter</a>
+                <a href="#">Email</a>
+                <a href="#">Resume</a>
+            </div>
+            <div class="organizations">
+                <h2>organizations.</h2>
+            </div>
+        </div>
+    </div>
+    <script>
+        const username = 'maanvikp20';
+
+        async function fetchLatestCommit() {
+            const url = `https://api.github.com/users/${username}/repos`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`Failed to fetch repositories. Status: ${response.status}`);
+                }
+                const repos = await response.json();
+
+                let latestCommit = null;
+
+                // Iterate through each repository and fetch commit details
+                for (const repo of repos) {
+                    const commitsUrl = `https://api.github.com/repos/${username}/${repo.name}/commits`;
+                    const commitsResponse = await fetch(commitsUrl);
+                    if (!commitsResponse.ok) {
+                        console.error(`Failed to fetch commits for repository ${repo.name}. Status: ${commitsResponse.status}`);
+                        continue;
+                    }
+                    const commits = await commitsResponse.json();
+
+                    if (commits.length > 0) {
+                        const commit = commits[0]; // Assuming the first commit is the latest
+                        const commitDate = new Date(commit.commit.committer.date).toLocaleString();
+                        const commitLink = commit.html_url;
+
+                        // Check if this is the latest commit
+                        if (!latestCommit || new Date(commit.commit.committer.date) > new Date(latestCommit.date)) {
+                            latestCommit = {
+                                repo: repo.full_name,
+                                message: commit.commit.message,
+                                date: commitDate,
+                                url: commitLink
+                            };
+                        }
+                    }
+                }
+
+                // Update HTML with latest commit details
+                if (latestCommit) {
+                    document.getElementById('latest-commit').innerHTML = `<a href="${latestCommit.url}" class="commit-link">${latestCommit.repo}</a>`;
+                    document.getElementById('commit-message').textContent = latestCommit.message;
+                    document.getElementById('commit-date').textContent = latestCommit.date;
+                } else {
+                    document.getElementById('latest-commit').innerHTML = '<span style="color: #ff4a4a;">No commits found</span>';
+                }
+            } catch (error) {
+                console.error('Error fetching latest commit:', error);
+            }
+        }
+
+        fetchLatestCommit();
+    </script>    
+</body>
+</html>
