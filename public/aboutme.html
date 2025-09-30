@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+
+    <title>Maanvik Poddar</title>
+    <link rel="shortcut icon" href="./media/cat.png" type="image/x-icon" />
+
+    <style>
+      /* ---------------- Loading Screen ---------------- */
+      #loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #1e1e1e;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+
+      #loading-screen img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 30px;
+      }
+
+      .progress-container {
+        width: 300px;
+        height: 20px;
+        background-color: #2d2d2d;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-bottom: 10px;
+      }
+
+      .progress-bar {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(90deg, #a855f7, #9333ea);
+        border-radius: 10px;
+        transition: width 0.2s ease;
+      }
+
+      .progress-text {
+        font-size: 1rem;
+        color: #a855f7;
+      }
+
+      /* Hide main content initially */
+      #main-content {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.7s ease;
+      }
+
+      #main-content.visible {
+        display: block;
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+      <img src="/assets/cat.png" alt="Loading Cat" />
+      <div class="progress-container">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-text" id="progress-text">0%</div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+      <div class="container">
+        <header>
+          <div class="header-container">
+            <div class="logo-container typewriter">
+              <img
+                class="logo-image"
+                src="./assets/cat.png"
+                alt="Profile Logo"
+              />
+              <h1 class="logo-title">Maanvik Poddar</h1>
+            </div>
+
+            <nav>
+              <a href="index.html" class="nav-link">Home</a>
+              <a href="aboutme.html" class="nav-link active">About Me</a>
+              <a href="projects.html" class="nav-link">Projects</a>
+              <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+          </div>
+        </header>
+
+        <main>
+          <section class="about-intro">
+            <h2 class="typewriter-text">Education</h2>
+            <p>
+              My academic journey and skills that shape my path toward
+              electrical engineering.
+            </p>
+          </section>
+
+          <section class="education-section">
+            <div class="education-icon">
+              <i class="fas fa-school"></i>
+            </div>
+            <div class="education-content">
+              <h3 class="education-title">Mountain Ridge High School</h3>
+              <p class="education-date">2022 - Present</p>
+              <p class="education-description">
+                Currently a Junior at Mountain Ridge High School where I've
+                maintained a strong academic record while participating in
+                various extracurricular activities.
+              </p>
+              <div class="achievements-section">
+                <h4 class="achievements-title">Key Achievements:</h4>
+                <ul class="achievements-list">
+                  <li>
+                    DECA - 1st and 4th in Financial Team Decision Making
+                    (States)
+                  </li>
+                  <li>Head of IOT Club</li>
+                  <li>Various awards in FBLA Districts and States</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="education-section">
+            <div class="education-icon">
+              <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="education-content">
+              <h3 class="education-title">West-MEC Northeast Campus</h3>
+              <p class="education-date">2024 - Present</p>
+              <p class="education-description">
+                Enrolled in specialized technical education programs focused on
+                coding and electrical engineering fundamentals.
+              </p>
+              <div class="achievements-section">
+                <h4 class="achievements-title">Skills Gained:</h4>
+                <ul class="achievements-list">
+                  <li>Full-stack web development</li>
+                  <li>Python Scripting</li>
+                  <li>Programming in Python, JavaScript</li>
+                  <li>Project management and collaborative development</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="education-section">
+            <div class="education-icon">
+              <i class="fas fa-university"></i>
+            </div>
+            <div class="education-content">
+              <h3 class="education-title">Future College Plans</h3>
+              <p class="education-date">2026 - 2030</p>
+              <p class="education-description">
+                Planning to pursue a degree in Electrical Engineering with
+                specialization in Chip Design, Quantum Computing, and
+                Telecommunications.
+              </p>
+              <div class="achievements-section">
+                <h4 class="achievements-title">Focus Areas:</h4>
+                <ul class="achievements-list">
+                  <li>Semiconductor physics and engineering</li>
+                  <li>Quantum information processing</li>
+                  <li>Advanced circuit design</li>
+                  <li>Computing architecture</li>
+                  <li>Satelitte Systems and Telecommunications</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <section class="skills-section">
+            <h3 class="section-title typewriter-text">Technical Skills</h3>
+            <div class="skills-categories">
+              <div class="skill-category">
+                <h4 class="skill-category-title">Programming</h4>
+                <div class="skill-items">
+                  <div class="skill-item">
+                    <p class="skill-name">JavaScript</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 60%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">Python</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 75%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">C++</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 50%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">HTML/CSS</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 90%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="skill-category">
+                <h4 class="skill-category-title">Engineering</h4>
+                <div class="skill-items">
+                  <div class="skill-item">
+                    <p class="skill-name">Circuit Design</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 70%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">PCB Layout</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 65%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">Microcontrollers</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 80%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">Digital Logic</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 60%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="skill-category">
+                <h4 class="skill-category-title">Soft Skills</h4>
+                <div class="skill-items">
+                  <div class="skill-item">
+                    <p class="skill-name">Problem Solving</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 90%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">Team Collaboration</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 87%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">Project Management</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 90%"></div>
+                    </div>
+                  </div>
+                  <div class="skill-item">
+                    <p class="skill-name">Technical Writing</p>
+                    <div class="skill-bar-container">
+                      <div class="skill-bar" style="width: 80%"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="certifications-section">
+            <h3 class="section-title typewriter-text">Certifications</h3>
+            <div class="certifications-grid">
+              <div class="certification-card">
+                <div class="certification-icon">
+                  <img
+                    src="./assets/htmlcssbadge.png"
+                    alt="HTML CSS Certificate Badge"
+                  />
+                </div>
+                <div class="certification-info">
+                  <h4 class="certification-title">
+                    Technology Specialist in HTML and CSS
+                  </h4>
+                  <p class="certification-issuer">Issued by West-MEC, 2025</p>
+                  <a
+                    class="certification-link"
+                    href="./assets/htmlcss.pdf"
+                    target="_blank"
+                    >View Certification</a
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <section class="social-section">
+          <h4 class="social-title">Connect with Me</h4>
+          <div class="social-icons">
+            <a
+              href="https://www.linkedin.com"
+              class="social-link linkedin"
+              target="_blank"
+            >
+              <i class="fab fa-linkedin"></i>
+            </a>
+            <a
+              href="https://www.instagram.com"
+              class="social-link instagram"
+              target="_blank"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://x.com" class="social-link twitter" target="_blank">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a
+              href="https://github.com/maanvikp20"
+              class="social-link github"
+              target="_blank"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://www.youtube.com"
+              class="social-link youtube"
+              target="_blank"
+            >
+              <i class="fab fa-youtube"></i>
+            </a>
+          </div>
+        </section>
+
+        <footer>
+          <p class="footer-text">
+            Made with <span class="heart-icon">💜</span> by Maanvik Poddar
+            &copy; 2025
+          </p>
+        </footer>
+      </div>
+    </div>
+
+    <!-- Loader Script -->
+    <script src="./js/loader.js"></script>
+  </body>
+</html>
