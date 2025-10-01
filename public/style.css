@@ -1,5 +1,5 @@
 /* Import Google Fonts - Cousine */
-@import url('https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cousine:wght@400;700&display=swap");
 
 /* Base Styles */
 * {
@@ -9,11 +9,68 @@
 }
 
 body {
-  font-family: 'Cousine', monospace;
+  font-family: "Cousine", monospace;
   background-color: #000000;
   color: #ffffff;
   margin: 1.5rem;
   line-height: 1.5;
+}
+
+/* ---------------- Loading Screen ---------------- */
+#loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#loading-screen img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 30px;
+}
+
+.progress-container {
+  width: 300px;
+  height: 20px;
+  background-color: #2d2d2d;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress-bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b3d, #e63946);
+  border-radius: 10px;
+  transition: width 0.2s ease;
+}
+
+.progress-text {
+  font-size: 1rem;
+  color: #ff6b3d;
+}
+
+/* Hide main content initially */
+#main-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+#main-content.visible {
+  display: block;
+  opacity: 1;
 }
 
 .container {
@@ -78,33 +135,34 @@ nav {
   position: relative;
   transition: transform 0.3s ease, color 0.3s ease;
   display: inline-block;
-  color: #a855f7;
+  color: #ff6b3d;
   text-decoration: none;
   padding: 0.5rem;
 }
 
 .nav-link:hover {
   transform: scale(1.15);
-  color: #d8b4fe;
+  color: #e63946;
 }
 
 .nav-link.active {
-  border-bottom: 2px solid #a855f7;
+  border-bottom: 2px solid #ff6b3d;
 }
 
 .nav-link:hover::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -2px;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: #d8b4fe;
-  box-shadow: 0 0 8px #d8b4fe;
+  background-color: #e63946;
+  box-shadow: 0 0 8px #e63946;
 }
 
 /* Typewriter Animation */
-.typewriter h1, .typewriter-text {
+.typewriter h1,
+.typewriter-text {
   overflow: hidden;
   white-space: nowrap;
   border-right: 2px solid white;
@@ -113,12 +171,18 @@ nav {
 }
 
 @keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink {
-  50% { border-color: transparent; }
+  50% {
+    border-color: transparent;
+  }
 }
 
 /* Main Content */
@@ -189,7 +253,7 @@ main {
 }
 
 .btn-primary {
-  background-color: #9333ea;
+  background-color: #e63946;
   color: #ffffff;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
@@ -202,12 +266,12 @@ main {
 }
 
 .btn-primary:hover {
-  background-color: #7e22ce;
+  background-color: #c41e3a;
 }
 
 .btn-secondary {
-  border: 1px solid #9333ea;
-  color: #9333ea;
+  border: 1px solid #e63946;
+  color: #e63946;
   padding: 0.5rem 1.5rem;
   border-radius: 0.5rem;
   transition: background-color 0.3s, color 0.3s;
@@ -219,7 +283,7 @@ main {
 }
 
 .btn-secondary:hover {
-  background-color: #9333ea;
+  background-color: #e63946;
   color: #ffffff;
 }
 
@@ -255,7 +319,7 @@ main {
 }
 
 .project-card {
-  background-color: #111827;
+  background-color: #2b2b2b;
   padding: 1.25rem;
   border-radius: 0.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -263,7 +327,7 @@ main {
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+  box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
 }
 
 .project-header {
@@ -273,7 +337,7 @@ main {
 }
 
 .project-title {
-  color: #a855f7;
+  color: #ff6b3d;
   font-weight: 700;
   font-size: 1.25rem;
   line-height: 1.75rem;
@@ -301,7 +365,7 @@ main {
   height: 10rem;
   overflow: hidden;
   border-radius: 0.375rem;
-  background-color: #1f2937;
+  background-color: #4a4a4a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,20 +413,112 @@ main {
 .view-all-link {
   display: inline-flex;
   align-items: center;
-  color: #a855f7;
+  color: #ff6b3d;
   text-decoration: none;
   transition: color 0.3s;
 }
 
 .view-all-link:hover {
-  color: #9333ea;
+  color: #e63946;
 }
 
 .arrow-icon {
   margin-left: 0.5rem;
 }
 
-/* Skills Section - Home Page */
+/* About Me Page Styles */
+.about-intro {
+  margin-top: 2.5rem;
+}
+
+.about-intro h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+}
+
+.about-intro p {
+  margin-top: 1rem;
+}
+
+.education-section {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .education-section {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.education-icon {
+  border-radius: 9999px;
+  background-color: #4a4a4a;
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.education-icon i {
+  font-size: 3.75rem;
+  color: #ff6b3d;
+}
+
+.education-content {
+  width: 100%;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .education-content {
+    width: 66.666667%;
+    text-align: left;
+  }
+}
+
+.education-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #ff6b3d;
+  line-height: 2.25rem;
+}
+
+.education-date {
+  margin-top: 0.5rem;
+  color: #d1d5db;
+}
+
+.education-description {
+  margin-top: 1rem;
+}
+
+.achievements-section {
+  margin-top: 1rem;
+}
+
+.achievements-title {
+  font-weight: 700;
+}
+
+.achievements-list {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.achievements-list li {
+  margin-top: 0.25rem;
+}
+
+/* Skills Section */
 .skills-section {
   margin-top: 4rem;
 }
@@ -381,7 +537,7 @@ main {
 }
 
 .skill-card {
-  background-color: #111827;
+  background-color: #2b2b2b;
   padding: 1rem;
   border-radius: 0.5rem;
   text-align: center;
@@ -420,106 +576,13 @@ main {
 }
 
 .skill-icon.quantum {
-  color: #a855f7;
+  color: #ff6b3d;
 }
 
 .skill-name {
   margin-top: 0.5rem;
 }
 
-/* About Me Page Styles */
-.about-intro {
-  margin-top: 2.5rem;
-}
-
-.about-intro h2 {
-  font-size: 2.25rem;
-  font-weight: 700;
-  line-height: 2.5rem;
-}
-
-.about-intro p {
-  margin-top: 1rem;
-}
-
-.education-section {
-  margin-top: 3rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  align-items: center;
-}
-
-@media (min-width: 640px) {
-  .education-section {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-}
-
-.education-icon {
-  border-radius: 9999px;
-  background-color: #1f2937;
-  width: 10rem;
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.education-icon i {
-  font-size: 3.75rem;
-  color: #a855f7;
-}
-
-.education-content {
-  width: 100%;
-  text-align: center;
-}
-
-@media (min-width: 640px) {
-  .education-content {
-    width: 66.666667%;
-    text-align: left;
-  }
-}
-
-.education-title {
-  font-size: 1.875rem;
-  font-weight: 700;
-  color: #a855f7;
-  line-height: 2.25rem;
-}
-
-.education-date {
-  margin-top: 0.5rem;
-  color: #d1d5db;
-}
-
-.education-description {
-  margin-top: 1rem;
-}
-
-.achievements-section {
-  margin-top: 1rem;
-}
-
-.achievements-title {
-  font-weight: 700;
-}
-
-.achievements-list {
-  list-style-type: disc;
-  padding-left: 1.25rem;
-  margin-top: 0.5rem;
-}
-
-.achievements-list li {
-  margin-top: 0.25rem;
-}
-
-/* Skills Section - About Page */
 .skills-categories {
   display: grid;
   grid-template-columns: repeat(1, minmax(0, 1fr));
@@ -534,13 +597,13 @@ main {
 }
 
 .skill-category {
-  background-color: #111827;
+  background-color: #2b2b2b;
   padding: 1.5rem;
   border-radius: 0.5rem;
 }
 
 .skill-category-title {
-  color: #a855f7;
+  color: #ff6b3d;
   font-weight: 700;
   font-size: 1.25rem;
   margin-bottom: 1rem;
@@ -565,14 +628,14 @@ main {
 
 .skill-bar-container {
   width: 100%;
-  background-color: #374151;
+  background-color: #4a4a4a;
   border-radius: 9999px;
   height: 0.625rem;
   overflow: hidden;
 }
 
 .skill-bar {
-  background-color: #a855f7;
+  background-color: #ff6b3d;
   height: 100%;
   border-radius: 9999px;
   transition: width 0.5s ease;
@@ -597,7 +660,7 @@ main {
 }
 
 .certification-card {
-  background-color: #111827;
+  background-color: #2b2b2b;
   padding: 1rem;
   border-radius: 0.5rem;
   display: flex;
@@ -605,7 +668,7 @@ main {
 }
 
 .certification-icon {
-  background-color: #581c87;
+  background-color: #c41e3a;
   border-radius: 9999px;
   width: 4.5rem;
   height: 4.5rem;
@@ -624,7 +687,7 @@ main {
 
 .certification-icon i {
   font-size: 1.5rem;
-  color: #c084fc;
+  color: #ff6b3d;
 }
 
 .certification-info {
@@ -632,7 +695,7 @@ main {
 }
 
 .certification-title {
-  color: #9333ea;
+  color: #e63946;
   font-weight: 700;
 }
 
@@ -654,7 +717,7 @@ main {
 }
 
 .certification-link:hover {
-  color: #a855f7;
+  color: #ff6b3d;
 }
 
 /* Social Section */
@@ -693,11 +756,11 @@ main {
 }
 
 .social-link.instagram {
-  color: #9333ea;
+  color: #e63946;
 }
 
 .social-link.instagram:hover {
-  color: #a855f7;
+  color: #ff6b3d;
 }
 
 .social-link.twitter {
@@ -729,7 +792,7 @@ footer {
   margin-top: 4rem;
   padding-bottom: 2rem;
   text-align: center;
-  border-top: 1px solid #1f2937;
+  border-top: 1px solid #4a4a4a;
   padding-top: 2rem;
 }
 
@@ -738,7 +801,7 @@ footer {
 }
 
 .heart-icon {
-  color: #a855f7;
+  color: #ff6b3d;
 }
 
 /* Projects Page Styles */
@@ -781,7 +844,7 @@ footer {
   position: relative;
   overflow: hidden;
   height: 200px;
-  background-color: #121A2B;
+  background-color: #2b2b2b;
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -833,21 +896,21 @@ footer {
 }
 
 .project-title {
-  color: #A17BF3;
+  color: #ff6b3d;
   font-weight: bold;
   font-size: 1.25rem;
   line-height: 1.75rem;
 }
 
 .project-description {
-  color: #E5E7EB;
+  color: #e5e7eb;
   font-size: 0.95rem;
   line-height: 1.5;
   margin-top: 0.5rem;
 }
 
 .github-icon {
-  color: #A0AEC0;
+  color: #a0aec0;
   margin-top: 0.5rem;
   font-size: 1.25rem;
   text-decoration: none;
@@ -862,34 +925,34 @@ footer {
 .selection-dot {
   width: 12px;
   height: 12px;
-  background-color: #9333ea;
+  background-color: #e63946;
   border-radius: 50%;
   position: absolute;
   z-index: 20;
 }
 
-.selection-dot.dot-top { 
-  top: -6px; 
-  left: 50%; 
-  transform: translateX(-50%); 
+.selection-dot.dot-top {
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.selection-dot.dot-right { 
-  right: -6px; 
-  top: 50%; 
-  transform: translateY(-50%); 
+.selection-dot.dot-right {
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
-.selection-dot.dot-bottom { 
-  bottom: -6px; 
-  left: 50%; 
-  transform: translateX(-50%); 
+.selection-dot.dot-bottom {
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.selection-dot.dot-left { 
-  left: -6px; 
-  top: 50%; 
-  transform: translateY(-50%); 
+.selection-dot.dot-left {
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Contact Page Styles */
@@ -902,17 +965,18 @@ footer {
 .contact-form-container {
   width: 100%;
   max-width: 32rem;
-  background-color: #111827;
+  background-color: #2b2b2b;
   padding: 2rem;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .contact-form-title {
   font-size: 1.875rem;
   font-weight: 700;
   margin-bottom: 1.5rem;
-  color: #a855f7;
+  color: #ff6b3d;
   text-align: center;
   line-height: 2.25rem;
 }
@@ -941,8 +1005,8 @@ footer {
   width: 100%;
   padding: 0.5rem;
   border-radius: 0.375rem;
-  background-color: #1f2937;
-  border: 1px solid #374151;
+  background-color: #4a4a4a;
+  border: 1px solid #6b5d54;
   color: #ffffff;
   font-family: inherit;
   font-size: 0.875rem;
@@ -952,8 +1016,8 @@ footer {
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: #a855f7;
-  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.1);
+  border-color: #ff6b3d;
+  box-shadow: 0 0 0 3px rgba(255, 107, 61, 0.1);
 }
 
 .form-textarea {
@@ -963,7 +1027,7 @@ footer {
 
 .form-submit {
   width: 100%;
-  background-color: #9333ea;
+  background-color: #e63946;
   color: #ffffff;
   padding: 0.5rem;
   border-radius: 0.375rem;
@@ -976,7 +1040,7 @@ footer {
 }
 
 .form-submit:hover {
-  background-color: #7e22ce;
+  background-color: #c41e3a;
 }
 
 .form-submit:active {
@@ -1019,7 +1083,8 @@ footer {
     padding: 0.5rem;
   }
 
-  .typewriter h1, .typewriter-text {
+  .typewriter h1,
+  .typewriter-text {
     font-size: 1.5rem;
     line-height: 2rem;
   }
@@ -1045,7 +1110,7 @@ footer {
   .skills-categories {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
-  
+
   .skills-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -1072,5 +1137,260 @@ footer {
 
   .project-info .project-description {
     font-size: 0.875rem;
+  }
+}
+
+/* API Grid */
+.api-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .api-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .api-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* API Cards */
+.api-card {
+  background-color: #2b2b2b;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.api-card:hover {
+  transform: translateY(-5px);
+}
+
+.anilist-card:hover {
+  box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+}
+
+.spotify-card:hover {
+  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+}
+
+.github-card:hover {
+  box-shadow: 0 10px 20px rgba(230, 57, 70, 0.3);
+}
+
+/* API Header */
+.api-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #4a4a4a;
+}
+
+.api-header i {
+  font-size: 1.5rem;
+}
+
+.anilist-card .api-header i {
+  color: #3b82f6;
+}
+
+.spotify-card .api-header i {
+  color: #22c55e;
+}
+
+.github-card .api-header i {
+  color: #ff6b3d;
+}
+
+.api-header h4 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* API Content */
+.api-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.loading {
+  text-align: center;
+  color: #9ca3af;
+  padding: 2rem;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Anime Item */
+.anime-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: #1a1a1a;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s;
+}
+
+.anime-item:hover {
+  background-color: #333333;
+}
+
+.anime-cover {
+  width: 60px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+}
+
+.anime-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.anime-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #3b82f6;
+  line-height: 1.25;
+}
+
+.anime-progress {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+.anime-score {
+  font-size: 0.75rem;
+  color: #fbbf24;
+}
+
+/* Spotify Item */
+.spotify-item {
+  display: flex;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: #1a1a1a;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s;
+}
+
+.spotify-item:hover {
+  background-color: #333333;
+}
+
+.spotify-cover {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+}
+
+.spotify-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  justify-content: center;
+}
+
+.spotify-track {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #22c55e;
+  line-height: 1.25;
+}
+
+.spotify-artist {
+  font-size: 0.75rem;
+  color: #9ca3af;
+}
+
+/* GitHub Item */
+.github-item {
+  padding: 0.75rem;
+  background-color: #1a1a1a;
+  border-radius: 0.375rem;
+  transition: background-color 0.2s;
+}
+
+.github-item:hover {
+  background-color: #333333;
+}
+
+.github-repo {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ff6b3d;
+  margin-bottom: 0.25rem;
+}
+
+.github-action {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin-bottom: 0.25rem;
+}
+
+.github-date {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.error-message {
+  text-align: center;
+  color: #f87171;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+/* Responsive - Mobile */
+@media (max-width: 425px) {
+  .api-card {
+    min-height: 250px;
+    padding: 1rem;
+  }
+
+  .api-header {
+    gap: 0.5rem;
+  }
+
+  .api-header h4 {
+    font-size: 1rem;
+  }
+
+  .anime-cover {
+    width: 50px;
+    height: 70px;
+  }
+
+  .spotify-cover {
+    width: 50px;
+    height: 50px;
   }
 }

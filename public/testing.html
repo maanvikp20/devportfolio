@@ -1,410 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fun Stuff - Activity Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-      rel="stylesheet"
-    />
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+      color: #fff;
+    }
 
-    <title>Maanvik Poddar</title>
-    <link rel="shortcut icon" href="./media/cat.png" type="image/x-icon" />
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-    <style>
-      /* ---------------- Loading Screen ---------------- */
-      #loading-screen {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #1e1e1e;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-      }
+    .skills-section {
+      animation: fadeIn 0.8s ease-in;
+    }
 
-      #loading-screen img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border-radius: 50%;
-        margin-bottom: 30px;
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-      .progress-container {
-        width: 300px;
-        height: 20px;
-        background-color: #2d2d2d;
-        border-radius: 10px;
-        overflow: hidden;
-        margin-bottom: 10px;
-      }
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      overflow: hidden;
+      border-right: 0.15em solid #fff;
+      white-space: nowrap;
+      margin: 0 auto 2rem;
+      letter-spacing: 0.15em;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      width: fit-content;
+    }
 
-      .progress-bar {
-        width: 0%;
-        height: 100%;
-        background: linear-gradient(90deg, #a855f7, #9333ea);
-        border-radius: 10px;
-        transition: width 0.2s ease;
-      }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
 
-      .progress-text {
-        font-size: 1rem;
-        color: #a855f7;
-      }
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: #fff; }
+    }
 
-      /* Hide main content initially */
-      #main-content {
-        display: none;
-        opacity: 0;
-        transition: opacity 0.7s ease;
-      }
+    .api-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
 
-      #main-content.visible {
-        display: block;
+    .api-card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 1.5rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      animation: slideUp 0.6s ease-out forwards;
+      opacity: 0;
+    }
+
+    .api-card:nth-child(1) { animation-delay: 0.1s; }
+    .api-card:nth-child(2) { animation-delay: 0.2s; }
+    .api-card:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes slideUp {
+      to {
         opacity: 1;
+        transform: translateY(0);
       }
-    </style>
-  </head>
-  <body>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-      <img src="/assets/cat.png" alt="Loading Cat" />
-      <div class="progress-container">
-        <div class="progress-bar" id="progress-bar"></div>
-      </div>
-      <div class="progress-text" id="progress-text">0%</div>
-    </div>
-
-    <!-- Main Content -->
-    <div id="main-content">
-      <div class="container">
-        <header>
-          <div class="header-container">
-            <div class="logo-container typewriter">
-              <img
-                class="logo-image"
-                src="./assets/cat.png"
-                alt="Profile Logo"
-              />
-              <h1 class="logo-title">Maanvik Poddar</h1>
-            </div>
-
-            <nav>
-              <a href="index.html" class="nav-link">Home</a>
-              <a href="aboutme.html" class="nav-link active">About Me</a>
-              <a href="projects.html" class="nav-link">Projects</a>
-              <a href="contact.html" class="nav-link">Contact</a>
-            </nav>
-          </div>
-        </header>
-
-        <main>
-          <section class="about-intro">
-            <h2 class="typewriter-text">Education</h2>
-            <p>
-              My academic journey and skills that shape my path toward
-              electrical engineering.
-            </p>
-          </section>
-
-          <section class="education-section">
-            <div class="education-icon">
-              <i class="fas fa-school"></i>
-            </div>
-            <div class="education-content">
-              <h3 class="education-title">Mountain Ridge High School</h3>
-              <p class="education-date">2022 - Present</p>
-              <p class="education-description">
-                Currently a Junior at Mountain Ridge High School where I've
-                maintained a strong academic record while participating in
-                various extracurricular activities.
-              </p>
-              <div class="achievements-section">
-                <h4 class="achievements-title">Key Achievements:</h4>
-                <ul class="achievements-list">
-                  <li>
-                    DECA - 1st and 4th in Financial Team Decision Making
-                    (States)
-                  </li>
-                  <li>Head of IOT Club</li>
-                  <li>Various awards in FBLA Districts and States</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section class="education-section">
-            <div class="education-icon">
-              <i class="fas fa-laptop-code"></i>
-            </div>
-            <div class="education-content">
-              <h3 class="education-title">West-MEC Northeast Campus</h3>
-              <p class="education-date">2024 - Present</p>
-              <p class="education-description">
-                Enrolled in specialized technical education programs focused on
-                coding and electrical engineering fundamentals.
-              </p>
-              <div class="achievements-section">
-                <h4 class="achievements-title">Skills Gained:</h4>
-                <ul class="achievements-list">
-                  <li>Full-stack web development</li>
-                  <li>Python Scripting</li>
-                  <li>Programming in Python, JavaScript</li>
-                  <li>Project management and collaborative development</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section class="education-section">
-            <div class="education-icon">
-              <i class="fas fa-university"></i>
-            </div>
-            <div class="education-content">
-              <h3 class="education-title">Future College Plans</h3>
-              <p class="education-date">2026 - 2030</p>
-              <p class="education-description">
-                Planning to pursue a degree in Electrical Engineering with
-                specialization in Chip Design, Quantum Computing, and
-                Telecommunications.
-              </p>
-              <div class="achievements-section">
-                <h4 class="achievements-title">Focus Areas:</h4>
-                <ul class="achievements-list">
-                  <li>Semiconductor physics and engineering</li>
-                  <li>Quantum information processing</li>
-                  <li>Advanced circuit design</li>
-                  <li>Computing architecture</li>
-                  <li>Satelitte Systems and Telecommunications</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-
-          <section class="skills-section">
-            <h3 class="section-title typewriter-text">Technical Skills</h3>
-            <div class="skills-categories">
-              <div class="skill-category">
-                <h4 class="skill-category-title">Programming</h4>
-                <div class="skill-items">
-                  <div class="skill-item">
-                    <p class="skill-name">JavaScript</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 60%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">Python</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 75%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">C++</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 50%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">HTML/CSS</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 90%"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="skill-category">
-                <h4 class="skill-category-title">Engineering</h4>
-                <div class="skill-items">
-                  <div class="skill-item">
-                    <p class="skill-name">Circuit Design</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 70%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">PCB Layout</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 65%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">Microcontrollers</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 80%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">Digital Logic</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 60%"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="skill-category">
-                <h4 class="skill-category-title">Soft Skills</h4>
-                <div class="skill-items">
-                  <div class="skill-item">
-                    <p class="skill-name">Problem Solving</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 90%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">Team Collaboration</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 87%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">Project Management</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 90%"></div>
-                    </div>
-                  </div>
-                  <div class="skill-item">
-                    <p class="skill-name">Technical Writing</p>
-                    <div class="skill-bar-container">
-                      <div class="skill-bar" style="width: 80%"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="certifications-section">
-            <h3 class="section-title typewriter-text">Certifications</h3>
-            <div class="certifications-grid">
-              <div class="certification-card">
-                <div class="certification-icon">
-                  <img
-                    src="./assets/htmlcssbadge.png"
-                    alt="HTML CSS Certificate Badge"
-                  />
-                </div>
-                <div class="certification-info">
-                  <h4 class="certification-title">
-                    Technology Specialist in HTML and CSS
-                  </h4>
-                  <p class="certification-issuer">Issued by West-MEC, 2025</p>
-                  <a
-                    class="certification-link"
-                    href="./assets/htmlcss.pdf"
-                    target="_blank"
-                    >View Certification</a
-                  >
-                </div>
-              </div>
-            </div>
-          </section>
-        </main>
-
-        <section class="social-section">
-          <h4 class="social-title">Connect with Me</h4>
-          <div class="social-icons">
-            <a
-              href="https://www.linkedin.com"
-              class="social-link linkedin"
-              target="_blank"
-            >
-              <i class="fab fa-linkedin"></i>
-            </a>
-            <a
-              href="https://www.instagram.com"
-              class="social-link instagram"
-              target="_blank"
-            >
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://x.com" class="social-link twitter" target="_blank">
-              <i class="fab fa-twitter"></i>
-            </a>
-            <a
-              href="https://github.com/maanvikp20"
-              class="social-link github"
-              target="_blank"
-            >
-              <i class="fab fa-github"></i>
-            </a>
-            <a
-              href="https://www.youtube.com"
-              class="social-link youtube"
-              target="_blank"
-            >
-              <i class="fab fa-youtube"></i>
-            </a>
-          </div>
-        </section>
-
-        <footer>
-          <p class="footer-text">
-            Made with <span class="heart-icon">💜</span> by Maanvik Poddar
-            &copy; 2025
-          </p>
-        </footer>
-      </div>
-    </div>
-
-    <!-- Loader Script -->
-    <script>
-      const progressBar = document.getElementById("progress-bar");
-      const progressText = document.getElementById("progress-text");
-      const loadingScreen = document.getElementById("loading-screen");
-      const mainContent = document.getElementById("main-content");
-
-      const images = document.images; // all images on page
-      const totalImages = images.length;
-      let loadedImages = 0;
-
-      function updateProgress() {
-        const progress = Math.floor((loadedImages / totalImages) * 100);
-        progressBar.style.width = progress + "%";
-        progressText.textContent = progress + "%";
-
-        if (progress >= 100) {
-          setTimeout(() => {
-            loadingScreen.style.display = "none";
-            mainContent.classList.add("visible");
-          }, 300);
-        }
+      from {
+        opacity: 0;
+        transform: translateY(30px);
       }
+    }
 
-      if (totalImages === 0) {
-        // No images, skip loader
-        progressBar.style.width = "100%";
-        progressText.textContent = "100%";
-        setTimeout(() => {
-          loadingScreen.style.display = "none";
-          mainContent.classList.add("visible");
-        }, 300);
-      } else {
-        for (let img of images) {
-          if (img.complete) {
-            loadedImages++;
-            updateProgress();
-          } else {
-            img.addEventListener("load", () => {
-              loadedImages++;
-              updateProgress();
-            });
-            img.addEventListener("error", () => {
-              loadedImages++;
-              updateProgress();
-            });
+    .api-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    .api-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .api-header i {
+      font-size: 1.8rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .api-header h4 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .anilist-card .api-header i { color: #02a9ff; }
+    .spotify-card .api-header i { color: #1db954; }
+    .github-card .api-header i { color: #fff; }
+
+    .api-content {
+      min-height: 180px;
+    }
+
+    .loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 180px;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 1rem;
+    }
+
+    .loading::after {
+      content: '...';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60%, 100% { content: '...'; }
+    }
+
+    .anime-item,
+    .track-item,
+    .repo-item {
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+    }
+
+    .anime-item:hover,
+    .track-item:hover,
+    .repo-item:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateX(5px);
+    }
+
+    .anilist-card .anime-item:hover { border-left-color: #02a9ff; }
+    .spotify-card .track-item:hover { border-left-color: #1db954; }
+    .github-card .repo-item:hover { border-left-color: #fff; }
+
+    .anime-item h5,
+    .track-item h5,
+    .repo-item h5 {
+      margin: 0 0 0.4rem 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+    }
+
+    .anime-item p,
+    .track-item p,
+    .repo-item p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.4;
+    }
+
+    .error-message {
+      color: rgba(255, 255, 255, 0.7);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-style: italic;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1rem; }
+      .section-title { font-size: 2rem; }
+      .api-grid { gap: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="skills-section">
+      <h3 class="section-title">Fun Stuff</h3>
+
+      <div class="api-grid">
+        <!-- AniList Section -->
+        <div class="api-card anilist-card">
+          <div class="api-header">
+            <i class="fas fa-tv"></i>
+            <h4>Currently Watching</h4>
+          </div>
+          <div id="anilist-content" class="api-content">
+            <div class="loading">Loading</div>
+          </div>
+        </div>
+
+        <!-- Spotify Section -->
+        <div class="api-card spotify-card">
+          <div class="api-header">
+            <i class="fab fa-spotify"></i>
+            <h4>Recently Played</h4>
+          </div>
+          <div id="spotify-content" class="api-content">
+            <div class="loading">Loading</div>
+          </div>
+        </div>
+
+        <!-- GitHub Section -->
+        <div class="api-card github-card">
+          <div class="api-header">
+            <i class="fab fa-github"></i>
+            <h4>Recent Activity</h4>
+          </div>
+          <div id="github-content" class="api-content">
+            <div class="loading">Loading</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    // AniList API
+    async function fetchAniList(username) {
+      const query = `
+        query ($userName: String) {
+          MediaListCollection(userName: $userName, type: ANIME, status: CURRENT) {
+            lists {
+              entries {
+                media {
+                  title {
+                    romaji
+                  }
+                  episodes
+                }
+                progress
+              }
+            }
           }
         }
+      `;
+
+      try {
+        const response = await fetch("https://graphql.anilist.co", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ query, variables: { userName: username } }),
+        });
+        const data = await response.json();
+
+        const anilistContent = document.getElementById("anilist-content");
+        const entries = data.data?.MediaListCollection?.lists?.[0]?.entries || [];
+
+        if (entries.length === 0) {
+          anilistContent.innerHTML = '<p class="error-message">No anime currently watching</p>';
+          return;
+        }
+
+        anilistContent.innerHTML = entries
+          .slice(0, 3)
+          .map(entry => `
+            <div class="anime-item">
+              <h5>${entry.media.title.romaji}</h5>
+              <p>Progress: ${entry.progress}/${entry.media.episodes || "?"} episodes</p>
+            </div>
+          `)
+          .join("");
+      } catch (error) {
+        document.getElementById("anilist-content").innerHTML =
+          '<p class="error-message">Failed to load AniList data</p>';
       }
-    </script>
-  </body>
+    }
+
+    // Spotify API
+    async function fetchSpotify(accessToken) {
+      try {
+        const response = await fetch(
+          "https://api.spotify.com/v1/me/player/recently-played?limit=3",
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        const data = await response.json();
+
+        const spotifyContent = document.getElementById("spotify-content");
+
+        if (!data.items || data.items.length === 0) {
+          spotifyContent.innerHTML = '<p class="error-message">No recent tracks</p>';
+          return;
+        }
+
+        spotifyContent.innerHTML = data.items
+          .map(item => `
+            <div class="track-item">
+              <h5>${item.track.name}</h5>
+              <p>${item.track.artists.map(a => a.name).join(", ")}</p>
+            </div>
+          `)
+          .join("");
+      } catch (error) {
+        document.getElementById("spotify-content").innerHTML =
+          '<p class="error-message">Connect Spotify to see recent tracks</p>';
+      }
+    }
+
+    // GitHub API
+    async function fetchGitHub(username) {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${username}/repos?sort=updated&per_page=3`
+        );
+        const data = await response.json();
+
+        const githubContent = document.getElementById("github-content");
+
+        if (!Array.isArray(data) || data.length === 0) {
+          githubContent.innerHTML = '<p class="error-message">No repositories found</p>';
+          return;
+        }
+
+        githubContent.innerHTML = data
+          .map(repo => `
+            <div class="repo-item">
+              <h5>${repo.name}</h5>
+              <p>${repo.description || "No description"}</p>
+            </div>
+          `)
+          .join("");
+      } catch (error) {
+        document.getElementById("github-content").innerHTML =
+          '<p class="error-message">Failed to load GitHub data</p>';
+      }
+    }
+
+    // Initialize - Replace with your usernames
+    fetchAniList("MaharajaI");
+    fetchGitHub("maanvikp20");
+
+    // For Spotify, you'll need to implement OAuth flow
+    document.getElementById("spotify-content").innerHTML =
+      '<p class="error-message">Connect Spotify to see recent tracks</p>';
+  </script>
+</body>
 </html>
